@@ -9,6 +9,7 @@ end
 class Article < ApplicationRecord
 	
   belongs_to :user	
+  has_many :comments, dependent: :destroy
   validates_with UpcaseValidator
   validate :set_something_in_model, on: :create
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
@@ -29,14 +30,14 @@ class Article < ApplicationRecord
 	after_create :log_destroy_action
 	after_rollback :rollback_method
 	before_commit :before_commit_method
-	
+
 	private
 
 		def set_something_in_model
 	    if self.description.first != self.description.first.upcase
 	      self.errors[:base] << "Description should start with capital letter"
 	    end
-  	end
+		end
 
 		def before_commit_method
 			puts 'before_commit'
