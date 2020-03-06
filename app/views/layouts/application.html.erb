@@ -10,17 +10,27 @@
   </head>
 
   <body>
-    <%= render 'layouts/flash' %>
-    <p class="navbar-text float-right">
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
-    </p>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+      <span style="color: wheat;">Logged in as</span><strong style="color: wheat; padding: 0 10px 0 5px;"><%= current_user.email%></strong>
+      <li class="nav-item active" style="padding-right: 10px;">
+        <%= link_to 'Edit profile', edit_user_registration_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      </li>
+      <% else %>
+      <li class="nav-item" style="padding-right: 10px;">
+        <%= link_to "Sign up", new_user_registration_path %>
+      </li>
+      <li class="nav-item" style="\padding-right: 10px;">
+        <%= link_to "Login", new_user_session_path %>
+      </li>
+      <% end %>
+      </ul>
+    </nav>
+  <%= render 'layouts/flash' %>
 
     <%= yield %>
   </body>
