@@ -31,10 +31,12 @@
     <%= form.label :"Publish this article" %>
   <% end %>
 
-  <div class="field">
-    <%=form.check_box :terms_of_service %>
-    <%= form.label :"I agree to terms and conditions." %>
-  </div>   
+  <% if !current_user.admin? %>
+    <div class="field">
+      <%=form.check_box :terms_of_service %>
+      <%= form.label :"I agree to terms and conditions." %>
+    </div>   
+  <% end %>
 
   
   <%= form.submit 'submit', class: "btn btn-success"  %>
