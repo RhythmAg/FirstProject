@@ -26,12 +26,17 @@
     <%= form.text_field :email,class: "form-control",placeholder: "xyz@gmail.com" %>
   </div>
 
+  <% if is_admin? %>
+    <%= form.check_box :is_published %>
+    <%= form.label :"Publish this article" %>
+  <% end %>
+
   <div class="field">
     <%=form.check_box :terms_of_service %>
     <%= form.label :"I agree to terms and conditions." %>
   </div>   
 
   
-    <%= form.submit 'submit', class: "btn btn-success"  %>
+  <%= form.submit 'submit', class: "btn btn-success"  %>
  
 <% end %>

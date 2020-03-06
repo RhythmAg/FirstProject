@@ -1,13 +1,13 @@
 class ArticlesController < ApplicationController
+  include ArticlesHelper
+
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   around_action :say_hello
   after_action :say_hey
   before_action :require_permission, only: [:edit, :destroy]
 
-
   def index
     @articles = current_user.articles.published
-    # @articles = Article.published
   end
 
   def show
@@ -49,13 +49,14 @@ class ArticlesController < ApplicationController
   end
 
   def example
-    @articles = Article.published
+    @articles = is_admin? ? Article.all : Article.published
     render :index
   end
 
   private
 
     def require_permission
+      return if is_admin?
       if current_user != Article.find(params[:id]).user
         redirect_to root_path
         flash[:success] = 'You are not authorized to perfom this action.'
@@ -77,6 +78,6 @@ class ArticlesController < ApplicationController
     end  
 
     def article_params
-      params.require(:article).permit(:name, :description, :terms_of_service, :email, :user_id)
+      params.require(:article).permit(:name, :description, :terms_of_service, :email, :user_id, :is_published)
     end
 end
