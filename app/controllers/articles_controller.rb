@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  include ArticlesHelper
+  # include ArticlesHelper
 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   around_action :say_hello
@@ -49,14 +49,14 @@ class ArticlesController < ApplicationController
   end
 
   def example
-    @articles = is_admin? ? Article.all : Article.published
+    @articles = current_user.admin? ? Article.all : Article.published
     render :index
   end
 
   private
 
     def require_permission
-      return if is_admin?
+      return if current_user.admin?
       if current_user != Article.find(params[:id]).user
         redirect_to root_path
         flash[:success] = 'You are not authorized to perfom this action.'

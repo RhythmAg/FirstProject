@@ -26,7 +26,7 @@
     <%= form.text_field :email,class: "form-control",placeholder: "xyz@gmail.com" %>
   </div>
 
-  <% if is_admin? %>
+  <% if current_user.admin? %>
     <%= form.check_box :is_published %>
     <%= form.label :"Publish this article" %>
   <% end %>
