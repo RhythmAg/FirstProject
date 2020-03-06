@@ -1,0 +1,62 @@
+<div class="jumbotron text-center">
+  <h1>Articles</h1>
+</div>
+<div class="container mt-3">
+  <h2>Filterable Table</h2>
+  <p>Type something in the input field to search the table for article names:</p>  
+  <input class="form-control" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search..">
+  <br>
+<table class="table table-bordered" id="myTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Email</th>
+      <th>Is published</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <span id="ul"><% @articles.each do |article| %></span>
+      <tr>
+        <td><%= article.name %></td>
+        <td><%= article.description %></td>
+        <td><%= article.email %></td>
+        <td><%= article.is_published %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Article', new_article_path %>
+<%= link_to 'All articles', example_path %>
+
+<script type="text/javascript">
+function myFunction() {
+  debugger
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
