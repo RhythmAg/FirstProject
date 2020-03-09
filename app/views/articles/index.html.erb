@@ -12,7 +12,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Email</th>
-      <th>Is published</th>
+      <th>Status</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -23,7 +23,7 @@
         <td><%= article.name %></td>
         <td><%= article.description %></td>
         <td><%= article.email %></td>
-        <td><%= article.is_published %></td>
+        <td class="<%= article.published? ? 'badge badge-pill badge-success' : 'badge badge-pill badge-warning'%>"><%= article.status %></td>
         <td><%= link_to 'Show', article %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,7 +32,7 @@
   </tbody>
 </table>
 </div>
-<br>
+<br> 
 
 <%= link_to 'New Article', new_article_path %>
 <%= link_to 'All articles', example_path %>

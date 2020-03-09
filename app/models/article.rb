@@ -10,14 +10,13 @@ class Article < ApplicationRecord
 	
   belongs_to :user	
   has_many :comments, dependent: :destroy
+  enum status: { pending: 0, published: 1, active: 2, inactive: 3 }
   validates_with UpcaseValidator
   validate :set_something_in_model, on: :create
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
   validates :description, presence: true, length: { minimum: 5 }, uniqueness: true
   validates :terms_of_service, acceptance: true
-	scope :published, -> { where is_published: true }
-	scope :unpublished, -> { where is_published: false }
 
 	before_validation :before_validation_method
 	after_validation :after_validation_method
