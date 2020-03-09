@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 	before_action :set_article_value, only: [:create, :destroy]
 
 	def index
+		@comments = current_user.comments.paginate(page: params[:page], per_page: 5)
 	end
 
 	def create

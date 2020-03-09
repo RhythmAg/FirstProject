@@ -1,6 +1,6 @@
 <h4 style="text-align: center;color:darkcyan;font-size: xx-large;">Comments</h4>
 <div class="container">
-	<% current_user.comments.each do |comment| %>
+	<% @comments.each do |comment| %>
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title"><%= link_to comment.article.name, article_path(comment.article) %></h4>
@@ -18,7 +18,7 @@
 	<% end %>
 </div>
 		
-
+<%= will_paginate @comments %>
       
       
     
