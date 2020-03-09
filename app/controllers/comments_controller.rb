@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
 	before_action :set_article_value, only: [:create, :destroy]
 
+	def index
+	end
+
 	def create
 		@comment = @article.comments.create(comment_params)
 		redirect_to(@article)
