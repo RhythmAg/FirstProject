@@ -1,2 +1,9 @@
-<h1>Hey</h1>
-<h2><%= current_user.email %></h2>
+<div style="background-color: antiquewhite;">
+  <h1>Hey</h1>
+  <h2><%= current_user.email %></h2>
+  <br>
+  <li class="nav-item active" style="padding-right: 10px;">
+    <%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-warning" %>
+  </li>
+</div>
+ 
