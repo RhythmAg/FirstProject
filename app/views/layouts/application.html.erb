@@ -20,14 +20,17 @@
         <li class="nav-item">
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         </li>
-        <li  style="margin-left: 590px;" class="move">
+        <li  style="margin-left: 520px;" class="move">
           <%= link_to 'New Article', new_article_path,class: "aqua"%>
         </li>
         <li class="move">
           <%= link_to 'All articles', example_path,class: "aqua" %>
         </li>
-        <li >
+        <li class="move" >
           <%= link_to 'Comments', user_comments_path(current_user),class: "aqua"%>
+        <li>
+        <li >
+          <%= link_to 'News', news_index_path,class: "aqua"%>
         <li>
       <% else %>
         <li class="nav-item" style="padding-right: 10px;">

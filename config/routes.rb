@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :users do
    resources :comments, only: [:index]
   end
+
+  resources :news do
+    resources :comments, except: :index
+  end
+
   root 'articles#index'
   get '/example', to: 'articles#example'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

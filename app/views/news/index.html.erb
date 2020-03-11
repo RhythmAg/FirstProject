@@ -1,0 +1,27 @@
+<div class="jumbotron text-center">
+  <h1>News</h1>
+</div>
+<div class="container mt-3">
+<table class="table table-bordered" id="myTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <span id="ul"><% @news.each do |news| %></span>
+      <tr>
+        <td><%= news.title %></td>
+        <td><%= news.description %></td>
+        <td><%= link_to 'Show', news %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br> 
+
+
