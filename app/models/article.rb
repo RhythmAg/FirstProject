@@ -9,7 +9,7 @@ end
 class Article < ApplicationRecord
 	
   belongs_to :user	
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :commentable
   enum status: { pending: 0, published: 1, active: 2, inactive: 3 }
   validates_with UpcaseValidator
   validate :set_something_in_model, on: :create
