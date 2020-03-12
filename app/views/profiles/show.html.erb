@@ -1,4 +1,7 @@
 <div style="background-color: antiquewhite;">
+  <% if @user.avatar.attached? %>
+    <image src="<%=(url_for(@user.avatar))%>" style="width:200px;height:200px;border-radius: 50%;">
+  <% end %>
   <h3>Hey</h3>
   <h5><%= @user.email %></h5>
   <% if user_signed_in? && @user != current_user %>
@@ -40,4 +43,5 @@
     padding-left: 15px;
     font-size: medium;
   }
+
 </style>
