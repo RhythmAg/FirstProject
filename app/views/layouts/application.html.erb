@@ -10,38 +10,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
-      <% if user_signed_in? %>
-        <span style="color: wheat;">Logged in as</span><strong style="color: wheat; padding: 0 10px 0 5px;"><%= current_user.email%></strong>
-        <li class="nav-item active" style="padding-right: 10px;">
-          <%= link_to 'Profile', profile_path(current_user) %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-        </li>
-        <li  style="margin-left: 520px;" class="move">
-          <%= link_to 'New Article', new_article_path,class: "aqua"%>
-        </li>
-        <li class="move">
-          <%= link_to 'All articles', example_path,class: "aqua" %>
-        </li>
-        <li class="move" >
-          <%= link_to 'Comments', user_comments_path(current_user),class: "aqua"%>
-        <li>
-        <li >
-          <%= link_to 'News', news_index_path,class: "aqua"%>
-        <li>
-      <% else %>
-        <li class="nav-item" style="padding-right: 10px;">
-          <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-        <li class="nav-item" style="\padding-right: 10px;">
-          <%= link_to "Login", new_user_session_path %>
-        </li>
-      <% end %>
-      </ul>
-    </nav>
+  <%= render 'layouts/navbar' %>
   <%= render 'layouts/flash' %>
 
     <%= yield %>
