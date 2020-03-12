@@ -1,9 +1,43 @@
 <div style="background-color: antiquewhite;">
   <h1>Hey</h1>
-  <h2><%= current_user.email %></h2>
+  <h2><%= @user.email %>
+  <% if user_signed_in? && @user != current_user %>
+    <% if current_user.following?(@user) %>
+     <%= button_to 'Unfollow',friendships_path(user_id: @user.id), method: :delete,class:"btn btn-primary" %><br>
+     <div class="container">
+      <% @user.articles.each do |article| %>
+        <div class="card background">
+          <div class="card-body">
+            <h4 class="card-title"><%= article.name %></h4>
+          </div>
+          <p class="card-text article-body">
+          <span>Article Description:</span>
+            <%= article.description %>
+          </p> 
+        </div>
+        <br><br>
+      <% end %>
+    </div>
+    <%else%>
+      <%= button_to 'Follow',friendships_path(user_id: @user.id),class:"btn btn-primary"  %>  
+    <% end %>
+  <% end %>
+  </h2>
   <br>
+<% if @user == current_user %>
   <li class="nav-item active" style="padding-right: 10px;">
     <%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-warning" %>
   </li>
+<% end %>
 </div>
- 
+
+
+<style type="text/css">
+  .background{
+    background-color: burlywood;
+  }
+  .article-body{
+    padding-left: 15px;
+    font-size: medium;
+  }
+</style>

@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     resources :comments, except: :index
   end
 
-  resource :profile, only: [:show]
+  resources :profiles, only: [:show]
+  resource :friendships, only: [:create,:destroy]
   root 'articles#index'
+  resources :users, only: [:index] 
   get '/example', to: 'articles#example'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

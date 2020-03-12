@@ -15,7 +15,7 @@
       <% if user_signed_in? %>
         <span style="color: wheat;">Logged in as</span><strong style="color: wheat; padding: 0 10px 0 5px;"><%= current_user.email%></strong>
         <li class="nav-item active" style="padding-right: 10px;">
-          <%= link_to 'Profile', profile_path %>
+          <%= link_to 'Profile', profile_path(current_user) %>
         </li>
         <li class="nav-item">
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
