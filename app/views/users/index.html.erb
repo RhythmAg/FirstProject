@@ -1,11 +1,21 @@
 <h4 class="title" style="text-align: center;font-size: xx-large;">USERS</h4>
+<h2>Search User</h2>
+  <p>Type something in the input field to search for user email:</p>  
+  <input class="form-control" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search.."><br>
 <div class="container">
   <% @users.each do |user| %>
-    <div class="card">
+    <div class="card" >
       <div class="card-body">
-        <h4 class="card-title"><%= link_to user.email, profile_path(user),class: "sub-heading" %></h4>
+        <h4 class="card-title"><%= link_to user.email, profile_path(user),class: "sub-heading large" %></h4>
       </div> 
     </div>
     <br><br>
   <% end %>
 </div>
+
+<style type="text/css">
+  .large{
+    font-size: large;
+  }
+  
+</style>
