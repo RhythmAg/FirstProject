@@ -4,6 +4,9 @@
   <% end %>
   <h3>Hey</h3>
   <h5><%= @user.email %></h5>
+  <span class="badge badge-success"><%= @user.followers.count %> followers</span>
+  <span class="badge badge-pill badge-secondary"><%= @user.following.count %> following</span>
+
   <% if user_signed_in? && @user != current_user %>
     <% if current_user.following?(@user) %>
      <%= button_to 'Unfollow',friendships_path(user_id: @user.id), method: :delete,class:"btn btn-primary" %><br>
@@ -33,7 +36,6 @@
   </li>
 <% end %>
 </div>
-
 
 <style type="text/css">
   .background{
