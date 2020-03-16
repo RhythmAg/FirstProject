@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :avatar
   has_many :articles, dependent: :destroy
-  has_many :comments, through: :articles
+  has_many :comments
   has_many :notifications, dependent: :destroy
 
   has_many :active_friendships, class_name: "Friendship", foreign_key: "follower_id", dependent: :destroy

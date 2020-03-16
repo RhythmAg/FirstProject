@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		@comment = @object.comments.create(comment_params)
+		@comment = @object.comments.create(comment_params)		
+		@comment.user_id ||= current_user.id
+		@comment.save
 		redirect_to(@object)
 	end
 
@@ -23,6 +25,6 @@ class CommentsController < ApplicationController
 		end
 		
 		def comment_params
-			params.require(:comment).permit(:commenter, :body)
+			params.require(:comment).permit(:commenter, :body, :user_id)
 		end	
 end
