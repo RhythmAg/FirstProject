@@ -13,7 +13,19 @@
       <li >
         <%= link_to 'News', news_index_path,class: "aqua"%>
       <li>
-      <span style="color: wheat;margin-left: 520px;">Logged in as</span><strong style="color: wheat; padding: 0 10px 0 5px;"><%= current_user.email%></strong>
+      <span style="color: wheat;margin-left: 340px;">Logged in as</span><strong style="color: wheat; padding: 0 10px 0 5px;"><%= current_user.email%></strong>
+      <li class="nav-item" style="padding-right: 10px;">
+        <div class="dropdown">
+          <button class="dropdown-toggle" style="background-color: #212529;color: #0056b3;" type="button" data-toggle="dropdown">Notifications
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu" style="background-color: bisque;">
+            <% current_user.notifications.each do |notify| %>
+              <li style="width: 283px;cursor: pointer;"><%= notify.message %><span style="font-style: italic;font-size: 10px;color: brown;">(<%= time_ago_in_words(notify.created_at) %> ago)</span><hr></li>
+            <% end %>
+          </ul>
+        </div>
+        </div>
+      </li>
       <li class="nav-item active" style="padding-right: 10px;">
         <%= link_to 'Profile', profile_path(current_user) %>
       </li>
@@ -34,3 +46,4 @@
     <% end %>
   </ul>
 </nav>
+
