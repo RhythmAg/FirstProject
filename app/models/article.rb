@@ -8,9 +8,9 @@ end
 
 class Article < ApplicationRecord
 	
-  belongs_to :user	
-  has_many :comments, as: :commentable
   enum status: { pending: 0, published: 1, active: 2, inactive: 3 }
+  has_many :comments, as: :commentable
+  belongs_to :user  
   validates_with UpcaseValidator
   validate :set_something_in_model, on: :create
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
@@ -33,8 +33,8 @@ class Article < ApplicationRecord
 	private
 
 		def set_something_in_model
-	    if self.description.first != self.description.first.upcase
-	      self.errors[:base] << "Description should start with capital letter"
+	    if description.first != description.first.upcase
+	      errors[:base] << "Description should start with capital letter"
 	    end
 		end
 
