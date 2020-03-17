@@ -13,23 +13,23 @@
       <li >
         <%= link_to 'News', news_index_path,class: "aqua"%>
       <li>
-      <span style="color: wheat;margin-left: 340px;">Logged in as</span><strong style="color: wheat; padding: 0 10px 0 5px;"><%= current_user.email%></strong>
-      <li class="nav-item" style="padding-right: 10px;">
+      <span class="left wheat">Logged in as</span><strong class="emails-style wheat" style="padding-left: 5px;"><%= current_user.email%></strong>
+      <li class="nav-item right">
         <div class="dropdown">
-          <button class="dropdown-toggle" style="background-color: #212529;color: #0056b3;" type="button" data-toggle="dropdown">Notifications
+          <button class="dropdown-toggle design" type="button" data-toggle="dropdown">Notifications
           <span class="caret"></span></button>
-          <ul class="dropdown-menu" style="background-color: bisque;">
-            <% current_user.notifications.each do |notify| %>
-              <li style="width: 283px;cursor: pointer;"><%= notify.message %><span style="font-style: italic;font-size: 10px;color: brown;">(<%= time_ago_in_words(notify.created_at) %> ago)</span><hr></li>
+          <ul class="dropdown-menu drop-bg">
+            <% notification_list.each do |notify| %>
+              <li class="drop-li"><%= notify.message %><span class="time">(<%= time_ago_in_words(notify.created_at) %> ago)</span><hr></li>
             <% end %>
           </ul>
         </div>
         </div>
       </li>
-      <li class="nav-item active" style="padding-right: 10px;">
+      <li class="nav-item active right">
         <%= link_to 'Profile', profile_path(current_user) %>
       </li>
-       <li class="nav-item" style="padding-right: 10px;">
+       <li class="nav-item right">
         <%= link_to "Users", users_path %>
       </li>
       <li class="nav-item">
@@ -37,13 +37,50 @@
       </li>
      
     <% else %>
-      <li class="nav-item" style="padding-right: 10px;">
+      <li class="nav-item right">
         <%= link_to "Sign up", new_user_registration_path %>
       </li>
-      <li class="nav-item" style="\padding-right: 10px;">
+      <li class="nav-item right">
         <%= link_to "Login", new_user_session_path %>
       </li>
     <% end %>
   </ul>
 </nav>
 
+
+<style type="text/css">
+  .right{
+    padding-right: 10px;
+  }
+  .design{
+    background-color: #212529;
+    color: #0056b3;
+  }
+  .drop-li{
+    width: 283px;
+    cursor: pointer;
+  }
+  .time{
+    font-style: italic;
+    font-size: 10px;
+    color: brown;
+  }
+  .drop-bg{
+    background-color: bisque;
+    height: 400px;
+    width: 300px;
+    overflow-y: scroll;
+  }
+  .email-style{
+    padding: 0 10px 0 5px;
+  }
+  .wheat{
+    color: wheat;
+  }
+  .left{
+    margin-left: 340px;
+  }
+  
+</style>
+
+    
