@@ -1,6 +1,6 @@
 <div style="background-color: antiquewhite;">
   <% if @user.avatar.attached? %>
-    <image src="<%=(url_for(@user.avatar))%>" style="width:200px;height:200px;border-radius: 50%;">
+    <image src="<%=(url_for(@user.avatar))%>" class="profile-img">
   <% end %>
   <h3>Hey</h3>
   <h5><%= @user.email %></h5>
@@ -25,11 +25,15 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-          <% @user.followers.each do |follower| %>
-            <% if follower.avatar.attached? %>
-              <image src="<%=(url_for(follower.avatar))%>" style="width:50px;height:50px;border-radius: 50%;">
+          <% if @user.followers.present? %>
+            <% @user.followers.each do |follower| %>
+              <% if follower.avatar.attached? %>
+                <image src="<%=(url_for(follower.avatar))%>" class="pop-img">
+              <% end %>
+              <%= follower.email%><br>
             <% end %>
-            <%= follower.email%><br>
+          <% else %>
+            <span style="color: darkcyan;">Oops! You don't have any followers.</span>
           <% end %>
         </div>
         
@@ -55,13 +59,17 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-          <% @user.following.each do |following| %>
-            <% if following.avatar.attached? %>
-              <image src="<%=(url_for(following.avatar))%>" style="width:50px;height:50px;border-radius: 50%;">
+          <% if @user.following.present? %>
+            <% @user.following.each do |following| %>
+              <% if following.avatar.attached? %>
+                <image src="<%=(url_for(following.avatar))%>" class="pop-img">
+              <% end %>
+              <%= following.email%>
+              <%= button_to 'Unfollow',friendships_path(user_id: following.id), method: :delete,class: "btn btn-secondary" %>
+              <br>
             <% end %>
-            <%= following.email%>
-            <%= button_to 'Unfollow',friendships_path(user_id: following.id), method: :delete,class: "btn btn-secondary" %>
-            <br>
+          <% else %>
+            <span style="color: darkgoldenrod;">You are not following anyone. Click to start following <%= link_to "Users", users_path %></span>
           <% end %>
         </div>
 
@@ -114,5 +122,14 @@
     padding-left: 15px;
     font-size: medium;
   }
-
+  .profile-img{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+  }
+  .pop-img{
+    width:50px;
+    height:50px;
+    border-radius: 50%
+  }
 </style>
