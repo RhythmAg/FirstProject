@@ -33,8 +33,38 @@
         <%= link_to "Users", users_path %>
       </li>
       <li class="nav-item">
-        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <!-- Button to Open the Modal -->
+        <button type="button" class="design" data-toggle="modal" data-target="#myModal3">
+          Logout
+        </button>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal3">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header wheat teal">
+                <h4 class="modal-title">Sign out</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                Are you sure you want to logout?
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn teal wheat" style="margin-right: 20px;" data-dismiss="modal">Not now</button>
+                <%= button_to "Yes", destroy_user_session_path, method: :delete,class: "btn teal wheat" %>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </li>
+
      
     <% else %>
       <li class="nav-item right">
@@ -79,6 +109,9 @@
   }
   .left{
     margin-left: 340px;
+  }
+  .teal{
+    background-color: teal;
   }
   
 </style>
