@@ -89,6 +89,7 @@
      <%= button_to 'Unfollow',friendships_path(user_id: @user.id), method: :delete,class:"btn btn-primary" %><br>
      <div class="container">
       <% @user.articles.each do |article| %>
+        <%= link_to article_path(article.id), target: :_blank do%>
         <div class="card background">
           <div class="card-body">
             <h4 class="card-title"><%= article.name %></h4>
@@ -99,6 +100,7 @@
           </p> 
         </div>
         <br><br>
+        <% end %>
       <% end %>
     </div>
     <%else%>
